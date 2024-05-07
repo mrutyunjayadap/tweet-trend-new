@@ -8,9 +8,18 @@ environment{
     PATH = "/opt/apache-maven-3.9.6/bin:$PATH"
     }
     stages {
-        stage('build') {
+        stage('Build') {
             steps {
+                echo "----------Build started-----------"
                 sh 'mvn clean deploy -DskipTests'
+                echo "----------Build completed-----------"
+            }
+        }
+        stage("Test"){
+            steps {
+                echo "----------Unit Test started-----------"
+                sh 'mvn surefire-report:report'
+                echo "----------Unit Test completed-----------"
             }
         }
         stage('SonarQube analysis') {
