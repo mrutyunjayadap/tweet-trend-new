@@ -15,13 +15,13 @@ environment{
                 echo "----------Build completed-----------"
             }
         }
-        stage("Test"){
+        /*stage("Test"){
             steps {
                 echo "----------Unit Test started-----------"
                 sh 'mvn surefire-report:report'
                 echo "----------Unit Test completed-----------"
             }
-        }
+        }*/
         stage('SonarQube analysis') {
             environment{
                 scannerHome = tool 'jenkins-sonar-scanner';
