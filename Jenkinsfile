@@ -13,5 +13,14 @@ environment{
                 sh 'mvn clean deploy -DskipTests'
             }
         }
+        stage('SonarQube analysis') {
+            environment{
+                scannerHome = tool 'jenkins-sonar-scanner';
+            } 
+            steps{
+            withSonarQubeEnv('jenkins-sonar-server') { // If you have configured more than one global server connection, you can specify its name
+            sh "${scannerHome}/bin/sonar-scanner"
+            }
+            }
     }
 }
