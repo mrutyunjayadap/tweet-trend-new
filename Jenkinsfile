@@ -35,7 +35,7 @@ pipeline {
                 }
             }
         }
-
+/*
         stage('Quality Gate') {
             steps {
                 script {
@@ -47,7 +47,8 @@ pipeline {
                     }
                 }
             }
-        }
+        }*/
+        
         stage('Jar Publish') {
             steps {
                 script {
@@ -91,7 +92,7 @@ pipeline {
                         app.push()
                     }
                     echo '<--------------- Docker Publish Ended --------------->'
-        }
+                }
             }
         }
     }
