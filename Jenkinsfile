@@ -11,7 +11,7 @@ pipeline {
         PATH = "/opt/apache-maven-3.9.6/bin:$PATH"
     }
     stages {
-        stage("Build") {
+        stage('Build') {
             steps {
                 echo '----------Build started-----------'
                 sh 'mvn clean deploy -DskipTests'
@@ -25,7 +25,7 @@ pipeline {
                 echo "----------Unit Test completed-----------"
             }
         }*/
-        stage("SonarQube analysis") {
+        stage('SonarQube analysis') {
             environment {
                 scannerHome = tool 'jenkins-sonar-scanner'
             }
@@ -49,7 +49,7 @@ pipeline {
             }
         }*/
 
-        stage("Jar Publish") {
+        stage('Jar Publish') {
             steps {
                 script {
                     echo '<--------------- Jar Publish Started --------------->'
@@ -74,7 +74,7 @@ pipeline {
             }
         }
 
-        stage("Docker Build") {
+        stage('Docker Build') {
             steps {
                 script {
                     echo '<--------------- Docker Build Started --------------->'
@@ -84,7 +84,7 @@ pipeline {
             }
         }
 
-        stage("Docker Publish") {
+        stage('Docker Publish') {
             steps {
                 script {
                     echo '<--------------- Docker Publish Started --------------->'
@@ -96,10 +96,20 @@ pipeline {
             }
         }
 
-        stage("Deploy") {
+        /*stage("Deploy") {
             steps {
                 script {
                     sh './deploy.sh'
+                }
+            }
+        }*/
+
+        stage(' Deploy ') {
+            steps {
+                script {
+                    echo '<--------------- Helm Deploy Started --------------->'
+                    sh 'helm install my-app my-app-0.1.0.tgz'
+                    echo '<--------------- Helm deploy Ends --------------->'
                 }
             }
         }
