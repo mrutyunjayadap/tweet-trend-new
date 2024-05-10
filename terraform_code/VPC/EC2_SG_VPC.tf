@@ -126,12 +126,12 @@ resource "aws_instance" "my-ec2-1" {
 }
 
 module "sgs" {
-       source = "../sg_eks"
+       source = "../SG-EKS"
        vpc_id = aws_vpc.my-vpc.id
     }
 
      module "eks" {
-          source = "../eks"
+          source = "../EKS"
           vpc_id = aws_vpc.my-vpc.id
           subnet_ids = [aws_subnet.public-subnet-1.id,aws_subnet.public-subnet-2.id]
           sg_ids = module.sgs.security_group_public
