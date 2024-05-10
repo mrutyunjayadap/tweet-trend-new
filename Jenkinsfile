@@ -1,6 +1,6 @@
 def registry = 'https://mrutyunjay.jfrog.io/'
 def imageName = 'mrutyunjay.jfrog.io/docker-trial/tweet-app'
-def version   = '2.1.3'
+def version   = '2.1.4'
 pipeline {
     agent {
         node {
