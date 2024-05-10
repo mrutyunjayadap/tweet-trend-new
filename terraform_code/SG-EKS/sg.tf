@@ -19,3 +19,14 @@ resource "aws_security_group" "worker_node_sg" {
   }
 
 }
+
+
+
+resource "aws_vpc_security_group_ingress_rule" "allow_30082" {
+  security_group_id = aws_security_group.worker_node_sg.id
+  cidr_ipv4         = "0.0.0.0/0"
+  from_port         = 30082
+  ip_protocol       = "tcp"
+  to_port           = 30082
+  description       = "kube access"
+}
